@@ -10,7 +10,7 @@ export class RemoteBackRepository {
         const init = {
             body: item
         };
-        API.post(this.apiName, this.path, init )
+        API.post(this.apiName, this.path, init);
     }
 
     getAll() {
