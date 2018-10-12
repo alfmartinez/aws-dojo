@@ -2,6 +2,72 @@
 apps:
   web: !com.amazonaws.mobilehub.v0.AppDO {}
 features:
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      commentsCRUD: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: commentsCRUD
+          requires-signin: false
+          sdk-generation-stage-name: Development
+        paths:
+          /comments: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/comments-20181012135214.zip
+            description: 'Handler for calls to resource path : /comments/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: RM8rKFzUOKCcmTFoIPrYsBwfDDtx8LpN0qJu82DgXoY=
+            memorySize: '128'
+            modified: '2018-10-12T11:53:01.167+0000'
+            name: comments
+            runtime: nodejs6.10
+            timeout: '3'
+            version: YjU5h8cqWw.gm68Wc3X3MugAdcKDzKN3
+          '/comments/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/comments-20181012135214.zip
+            description: 'Handler for calls to resource path : /comments/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: RM8rKFzUOKCcmTFoIPrYsBwfDDtx8LpN0qJu82DgXoY=
+            memorySize: '128'
+            modified: '2018-10-12T11:53:01.167+0000'
+            name: comments
+            runtime: nodejs6.10
+            timeout: '3'
+            version: 3ScRnoCk7HXGwtbhh4CwOLCF1yWEsIiK
+      sampleCloudApi: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: sampleCloudApi
+          requires-signin: false
+          sdk-generation-stage-name: Development
+        paths:
+          /items: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/sampleLambda-20181012120917.zip
+            description: 'Handler for calls to resource path : /items/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: /b8cRqAygFQH9Rf5knAiqonDWZI+PPmsbQm23pe9EWw=
+            memorySize: '128'
+            modified: '2018-10-12T11:53:01.557+0000'
+            name: sampleLambda
+            runtime: nodejs6.10
+            timeout: '3'
+            version: x7t9yVcXmgo8mstFHMBmZ.gJJ0zwuOeU
+          '/items/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/sampleLambda-20181012120917.zip
+            description: 'Handler for calls to resource path : /items/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: /b8cRqAygFQH9Rf5knAiqonDWZI+PPmsbQm23pe9EWw=
+            memorySize: '128'
+            modified: '2018-10-12T11:53:01.557+0000'
+            name: sampleLambda
+            runtime: nodejs6.10
+            timeout: '3'
+            version: 8kuHLvnpAuQLUBIAITADv7MdDhVhe_mD
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -15,23 +81,26 @@ features:
           - !com.amazonaws.mobilehub.v0.NoSQLTable 
             attributes:
               email: S
+              personId: S
               personName: S
               phone: S
+              teamId: S
             hashKeyName: teamId
             hashKeyType: S
-            rangeKeyName: personId
-            rangeKeyType: S
-            tableName: ___DYNAMIC_PREFIX___-AWSMobileTable
-            tablePrivacy: public
             indexes:
               - !com.amazonaws.mobilehub.v0.NoSQLIndex 
                 hashKeyName: teamId
                 hashKeyType: S
+                indexName: personName-index
                 rangeKeyName: personName
                 rangeKeyType: S
-                indexName: personName-index
+            rangeKeyName: personId
+            rangeKeyType: S
+            tableName: ___DYNAMIC_PREFIX___-AWSMobileTable
+            tablePrivacy: public
           - !com.amazonaws.mobilehub.v0.NoSQLTable 
             attributes:
+              id: S
               message: S
             hashKeyName: id
             hashKeyType: S
@@ -39,7 +108,6 @@ features:
             rangeKeyType: ''
             tableName: ___DYNAMIC_PREFIX___-comments
             tablePrivacy: public
-            indexes: []
   mobile-analytics: !com.amazonaws.mobilehub.v0.Pinpoint 
     components:
       analytics: !com.amazonaws.mobilehub.v0.PinpointAnalytics {}
