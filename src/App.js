@@ -3,7 +3,7 @@ import './App.css';
 import {CommentList} from "./components/CommentList";
 import {CommentForm} from "./components/CommentForm";
 import commentRepository from "./infrastructure/CommentRepository";
-
+import Analytics from '@aws-amplify/analytics';
 
 
 class App extends Component {
@@ -12,15 +12,20 @@ class App extends Component {
     super();
     this.state = {comments:[]};
     this.loadComments();
+    Analytics.record('App loaded');
   }
 
   loadComments() {
       commentRepository.getAll()
-          .then(comments => this.setState({comments}));
+          .then(comments => {
+              Analytics.record('Comments loaded');
+              this.setState({comments});
+          });
   }
 
   onSaveComment = (comment) => {
       commentRepository.save(comment);
+      Analytics.record('Comment saved');
       this.loadComments();
   }
 
