@@ -1,8 +1,8 @@
-import {ArrayBackRepository} from "./back/ArrayBackRepository";
+import {RemoteBackRepository} from "./back/RemoteBackRepository";
 
 class CommentRepository {
     constructor() {
-        this.back = new ArrayBackRepository();
+        this.back = new RemoteBackRepository('commentsCRUD','/comments');
     }
 
     save(comment) {

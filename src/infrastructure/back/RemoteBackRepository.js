@@ -1,14 +1,20 @@
-export class ArrayBackRepository {
-    constructor() {
-        this.items = [];
+import API from '@aws-amplify/api';
+
+export class RemoteBackRepository {
+    constructor(apiName, path) {
+        this.apiName = apiName;
+        this.path = path;
     }
 
     save(item) {
-        this.items.push(item);
+        const init = {
+            body: item
+        };
+        API.post(this.apiName, this.path, init )
     }
 
     getAll() {
-        return this.items;
+        return API.get(this.apiName, this.path, {});
     }
 
 }
