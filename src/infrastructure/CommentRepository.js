@@ -1,14 +1,16 @@
+import {ArrayBackRepository} from "./back/ArrayBackRepository";
+
 class CommentRepository {
     constructor() {
-        this.comments = [];
+        this.back = new ArrayBackRepository();
     }
 
     save(comment) {
-        this.comments.push(comment);
+        this.back.save(comment);
     }
 
     getAll() {
-        return this.comments;
+        return this.back.getAll();
     }
 }
 
