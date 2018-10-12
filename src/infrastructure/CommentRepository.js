@@ -1,18 +1,16 @@
-export class CommentRepository {
-    static save(comment) {
-        console.log('Saving', comment);
+class CommentRepository {
+    constructor() {
+        this.comments = [];
     }
 
-    static getAll() {
-        return [{
-            id: 'ABCD',
-            message: 'Comment A'
-        },{
-            id: '99F3',
-            message:'Comment B'
-        },{
-            id: 'B9F3',
-            message:'Comment C'
-        }];
+    save(comment) {
+        this.comments.push(comment);
+    }
+
+    getAll() {
+        return this.comments;
     }
 }
+
+const repository = new CommentRepository();
+export default repository;

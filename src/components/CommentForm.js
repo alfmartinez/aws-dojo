@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {CommentRepository} from "../infrastructure/CommentRepository";
+import {v4 as uuid} from "uuid";
 
 export class CommentForm extends Component {
     constructor() {
@@ -17,7 +17,12 @@ export class CommentForm extends Component {
 
     submit = (e) => {
         e.preventDefault();
-        CommentRepository.save(this.state);
+        let id = uuid();
+        const comment = this.state;
+        this.props.onSave({
+            ...comment,
+            id
+        })
     }
 
     render() {
