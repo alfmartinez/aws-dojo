@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Comment} from "./Comment";
 
 export class CommentList extends Component {
     render() {
@@ -14,7 +15,7 @@ export class CommentList extends Component {
         return <div className="comment-list">
             <h1>Commentaires</h1>
             <ul>
-                { comments.map(({id, message}) => <li key={id}>{message}</li>)}
+                { comments.map(({id, message}) => <Comment key={id} message={message}/>)}
             </ul>
         </div>;
     }
